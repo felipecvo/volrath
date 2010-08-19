@@ -45,19 +45,31 @@
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Web.Mvc, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Routing">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActivityEnum.cs" />
+    <Compile Include="HttpAuthorizationAttribute.cs" />
     <Compile Include="HtmlHelper.cs" />
     <Compile Include="HttpAuthenticationAttribute.cs" />
     <Compile Include="HttpSecurityContext.cs" />
+    <Compile Include="Migration\20100728012359_CreatePermissions.cs" />
+    <Compile Include="Migration\20100728013957_CreateRoles.cs" />
+    <Compile Include="Migration\20100728014419_CreateUserRoles.cs" />
+    <Compile Include="Migration\20100728014427_CreateRolePermissions.cs" />
+    <Compile Include="Permission.cs" />
+    <Compile Include="Role.cs" />
+    <Compile Include="RolePermission.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Migration\20100711142823_CreateUsers.cs" />
     <Compile Include="Migration\20100711162112_CreateUserActivities.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserActivity.cs" />
+    <Compile Include="UserRole.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="database.config" />

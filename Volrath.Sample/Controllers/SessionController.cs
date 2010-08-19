@@ -17,6 +17,7 @@
       return View("New");
     }
 
+    [HttpAuthentication]
     public ActionResult Destroy() {
       Volrath.User.DoLogout();
       return RedirectToRoute(new { controller = "home" });

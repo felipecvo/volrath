@@ -8,6 +8,7 @@
   using ActiveRecord.net.Validation;
   using System.Web;
   using System.Web.Security;
+using System.Collections.Generic;
 
   [ValidatesPresenceOf(PropertyName = "Name")]
   [ValidatesPresenceOf(PropertyName = "Email")]
@@ -35,6 +36,26 @@
         PasswordHash = EncodePassword(Password);
       }
       return true;
+    }
+
+    public bool DoLogin() {
+      return DoLogin(Email, Password);
+    }
+
+    public bool HasPermission(string name) {
+      return Permissions.Find(x => (x.Name == name || x.Name == "*")) != null; 
+    }
+
+    private List<Permission> permissions;
+    public List<Permission> Permissions {
+      get {
+        return permissions ??(permissions = (from p in Permission.db
+                join rp in RolePermission.db on p.Id equals rp.PermissionId
+                join r in Role.db on rp.RoleId equals r.Id
+                join ur in UserRole.db on r.Id equals ur.RoleId
+                where ur.UserId == Id
+                select p).ToList());
+      }
     }
 
     private static string EncodePassword(string password) {
