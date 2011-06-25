@@ -4,39 +4,51 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
-using ActiveRecord.net.Logging;
-using ActiveRecord.net.Provider;
+using Boycott.Logging;
+using Boycott.Provider;
 
-namespace Volrath.Sample {
-  // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
-  // visit http://go.microsoft.com/?LinkId=9394801
+namespace Volrath.Sample
+{
+	// Note: For instructions on enabling IIS6 or IIS7 classic mode, 
+	// visit http://go.microsoft.com/?LinkId=9394801
 
-  public class MvcApplication : System.Web.HttpApplication {
+	public class MvcApplication : System.Web.HttpApplication
+	{
 
-    public override void Init() {
-      base.Init();
-      Volrath.HttpSecurityContext.Init(this);
-    }
+		public override void Init ()
+		{
+			base.Init ();
+			Volrath.HttpSecurityContext.Init (this);
+		}
 
-    public static void RegisterRoutes(RouteCollection routes) {
-      routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+		public static void RegisterRoutes (RouteCollection routes)
+		{
+			routes.IgnoreRoute ("{resource}.axd/{*pathInfo}");
+			
+			routes.MapRoute ("login", "login", new { controller = "Session", action = "New" });
+			
+			// Route name
+			// URL with parameters
+				// Parameter defaults
+			routes.MapRoute ("Default", "{controller}/{action}/{id}", new { controller = "Home", action = "Index", id = UrlParameter.Optional });
+			
+		}
 
-      routes.MapRoute("login", "login", new { controller = "session", action = "new" });
-
-      routes.MapRoute(
-          "Default", // Route name
-          "{controller}/{action}/{id}", // URL with parameters
-          new { controller = "Home", action = "Index", id = UrlParameter.Optional } // Parameter defaults
-      );
-
-    }
-
-    protected void Application_Start() {
-      AreaRegistration.RegisterAllAreas();
-
-      RegisterRoutes(RouteTable.Routes);
-
-      DatabaseProvider.Logger = new FileLogger(@"c:\temp\logs\database.log");
-    }
-  }
+		protected void Application_Start ()
+		{
+			AreaRegistration.RegisterAllAreas ();
+			
+			RegisterRoutes (RouteTable.Routes);
+			
+			Boycott.Configuration.DatabaseProvider = new MySQLProvider ("localhost", "volrath", "root", "");
+			var sync = new Boycott.Mapper.Synchronizator ();
+			if (!sync.DatabseExists) {
+				Boycott.Configuration.DatabaseProvider.CreateDatabase ();
+			}
+			
+			if (sync.Check ()) {
+				sync.Sync ();
+			}
+		}
+	}
 }
