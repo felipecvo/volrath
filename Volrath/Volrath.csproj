@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -31,24 +31,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ActiveRecord.net, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Lib\ActiveRecord.net.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Core">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="System.Data" />
     <Reference Include="System.Web" />
-    <Reference Include="System.Web.Abstractions">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
     <Reference Include="System.Web.Mvc, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="System.Web.Routing">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    <Reference Include="Boycott, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\Boycott.dll</HintPath>
     </Reference>
-    <Reference Include="System.Xml" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActivityEnum.cs" />
@@ -56,23 +48,14 @@
     <Compile Include="HtmlHelper.cs" />
     <Compile Include="HttpAuthenticationAttribute.cs" />
     <Compile Include="HttpSecurityContext.cs" />
-    <Compile Include="Migration\20100728012359_CreatePermissions.cs" />
-    <Compile Include="Migration\20100728013957_CreateRoles.cs" />
-    <Compile Include="Migration\20100728014419_CreateUserRoles.cs" />
-    <Compile Include="Migration\20100728014427_CreateRolePermissions.cs" />
     <Compile Include="Permission.cs" />
     <Compile Include="Role.cs" />
     <Compile Include="RolePermission.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="User.cs" />
-    <Compile Include="Migration\20100711142823_CreateUsers.cs" />
-    <Compile Include="Migration\20100711162112_CreateUserActivities.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserActivity.cs" />
     <Compile Include="UserRole.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="database.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
