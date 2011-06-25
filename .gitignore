@@ -2,5 +2,6 @@
 */bin/*
 */obj/*
 *.user
+*.pidb
 Thumbs.db
 */images/banners
