@@ -3,9 +3,9 @@
   using System.Collections.Generic;
   using System.Linq;
   using System.Text;
-  using ActiveRecord.net;
+  using Boycott;
 
-  public class RolePermission : ActiveRecordBase<RolePermission> {
+  public class RolePermission : Base<RolePermission> {
     public int Id { get; set; }
     public int RoleId { get; set; }
     public int PermissionId { get; set; }

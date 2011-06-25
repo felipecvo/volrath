@@ -3,9 +3,9 @@
   using System.Collections.Generic;
   using System.Linq;
   using System.Text;
-  using ActiveRecord.net;
+  using Boycott;
 
-  public class UserActivity : ActiveRecordBase<UserActivity> {
+  public class UserActivity : Base<UserActivity> {
     public int Id { get; set; }
     public int Activity { get; set; }
     public int UserId { get; set; }

@@ -3,18 +3,18 @@
   using System.Security.Cryptography;
   using System.Text;
   using System.Linq;
-  using ActiveRecord.net;
-  using ActiveRecord.net.Attributes;
-  using ActiveRecord.net.Validation;
+  using Boycott;
+  using Boycott.Attributes;
+  using Boycott.Validation;
   using System.Web;
   using System.Web.Security;
-using System.Collections.Generic;
+  using System.Collections.Generic;
 
   [ValidatesPresenceOf(PropertyName = "Name")]
   [ValidatesPresenceOf(PropertyName = "Email")]
   [ValidatesPresenceOf(PropertyName = "PasswordHash")]
   [Serializable]
-  public class User : ActiveRecordBase<User> {
+  public class User : Base<User> {
     public User() {
       this.BeforeSave += new CallbackHandler(User_BeforeSave);
     }
